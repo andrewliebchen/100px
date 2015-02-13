@@ -3,12 +3,21 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
+  {{>drawings}}
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="drawings">
+  <div class="drawings">
+    {{#each drawing}}
+      <div class="drawing mtr_drawing">
+        {{#each cell}}
+          <div class="cell" style="top:{{y}}px; left:{{x}}px;"></div>
+        {{/each}}
+      </div>
+    {{/each}}
+  </div>
+</template>
+
+<template name="cell">
+  <div class="cell"></div>
 </template>

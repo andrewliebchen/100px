@@ -1,23 +1,42 @@
+Drawings = new Meteor.Collection('drawings');
+Cells = new Meteor.Collection('cells');
+
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
+  // Template.body.rendered = function() {
+  //   _(100).times(function(){
+  //     $('.drawing').append('<div class="cell"></div>');
+  //   });
+  // }
 
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
+  Template.drawings.helpers({
+    drawing: function() {
+      return Drawings.find({});
+    },
+
+    cell: function() {
+      return Cells.find({});
     }
   });
 
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
-    }
-  });
 }
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    // code to run on server at startup
+    Drawings.remove({});
+    Cells.remove({});
+
+    if(Drawings.find().count() === 0) {
+      Drawings.insert({});
+
+      Cells.insert({
+        x: 20,
+        y: 30
+      });
+
+      Cells.insert({
+        x: 25,
+        y: 30
+      });
+    }
   });
 }

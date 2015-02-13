@@ -1,0 +1,53 @@
+$colorGray1: #1E2939;
+$colorGray2: #3C495C;
+$colorGray3: #626E80;
+$colorGray4: #9DA5B1;
+$colorGray5: #D4D9DF;
+$colorGray6: #F7F9FA;
+
+$cellSize: 5px;
+$drawingSize: $cellSize * 20;
+
+@mixin clearfix {
+  &::after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: $colorGray6;
+  color: $colorGray1;
+  font-family: "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.drawings {
+  @include clearfix;
+  text-align: center;
+}
+
+.drawing {
+  width: $drawingSize;
+  height: $drawingSize;
+  border: 2px solid $colorGray5;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 10px;
+  position: relative;
+}
+
+.cell {
+  width: $cellSize;
+  height: $cellSize;
+  float: left;
+  background-color: $colorGray2;
+  position: absolute;
+}
