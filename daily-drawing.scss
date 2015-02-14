@@ -6,18 +6,22 @@ $colorGray5: #D4D9DF;
 $colorGray6: #F7F9FA;
 
 $colors:  (
-  aqua:    #7FDBFF,
-  blue:    #0074D9,
-  teal:    #39CCCC,
-  green:   #2ECC40,
-  olive:   #3D9970,
-  lime:    #01FF70,
-  yellow:  #FFDC00,
-  orange:  #FF851B,
-  red:     #FF4136,
-  fuchsia: #F012BE,
-  purple:  #B10DC9,
-  maroon:  #85144B,
+  black:      $colorGray1,
+  gray:       $colorGray3,
+  light-gray: $colorGray5,
+  white:      $colorGray6,
+  aqua:       #7FDBFF,
+  blue:       #0074D9,
+  teal:       #39CCCC,
+  green:      #2ECC40,
+  olive:      #3D9970,
+  lime:       #01FF70,
+  yellow:     #FFDC00,
+  orange:     #FF851B,
+  red:        #FF4136,
+  fuchsia:    #F012BE,
+  purple:     #B10DC9,
+  maroon:     #85144B
 );
 
 $cellSize: 10px;
@@ -83,24 +87,8 @@ body {
 }
 
 // Cell colors
-.black {
-  background-color: $colorGray1;
-}
-
-.gray {
-  background-color: $colorGray3;
-}
-
-.light-gray {
-  background-color: $colorGray5;
-}
-
-.white {
-  background-color: $colorGray6;
-}
-
 @each $colorName, $colorHex in $colors {
-  .#{$colorName} {
+  [data-color="#{$colorName}"] {
     background-color: $colorHex;
   }
 }
@@ -108,4 +96,5 @@ body {
 .swatch {
   height: 1em;
   width: 1em;
+  cursor: pointer;
 }

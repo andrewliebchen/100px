@@ -4,7 +4,7 @@
 
 <body>
   {{>drawings}}
-  {{>drawingEditor}}
+  {{>swatches}}
 </body>
 
 <template name="drawings">
@@ -18,28 +18,12 @@
 <template name="drawingContent">
   <div class="drawing mtr_drawing{{#if editing}} editing{{/if}}">
     {{#each cells}}
-      <div class="cell {{this}}"></div>
+      <div class="cell" data-color="{{this}}"></div>
     {{/each}}
   </div>
   <button class="mtr_edit-drawing">edit</button>
 </template>
 
-<template name="drawingEditor">
-  <div class="swatches">
-    <div class="swatch black"></div>
-    <div class="swatch gray"></div>
-    <div class="swatch light-gray"></div>
-    <div class="swatch aqua"></div>
-    <div class="swatch blue"></div>
-    <div class="swatch teal"></div>
-    <div class="swatch green"></div>
-    <div class="swatch olive"></div>
-    <div class="swatch lime"></div>
-    <div class="swatch yellow"></div>
-    <div class="swatch orange"></div>
-    <div class="swatch red"></div>
-    <div class="swatch fuchsia"></div>
-    <div class="swatch purple"></div>
-    <div class="swatch maroon"></div>
-  </div>
+<template name="swatches">
+  <div class="swatches"></div>
 </template>

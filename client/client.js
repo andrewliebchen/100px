@@ -1,4 +1,7 @@
 var cellWidth = 10;
+var colors = ['black', 'gray', 'light-gray', 'white', 'aqua', 'blue', 'teal',
+              'green', 'olive', 'lime', 'yellow', 'orange', 'red', 'fuchsia',
+              'purple', 'maroon'];
 
 Session.setDefault('currentDrawing', null);
 Session.setDefault('currentColor', 'black');
@@ -29,3 +32,15 @@ Template.drawingContent.events({
     Meteor.call('updateDrawing', Session.get('currentDrawing'), cells);
   }
 });
+
+Template.swatches.rendered = function() {
+  _.map(colors, function(color) {
+    $('.swatches').append('<div class="swatch mtr_swatch" data-color="' + color + '"></div>');
+  })
+};
+
+Template.swatches.events({
+  'click .mtr_swatch': function(event, template) {
+    Session.set('currentColor', $(event.target).data('color'));
+  }
+})
