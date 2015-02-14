@@ -6,45 +6,26 @@ Session.setDefault('currentColor', 'black');
 Template.drawings.helpers({
   drawing: function() {
     return Drawings.find({});
-  },
+  }
+});
 
+Template.drawingContent.helpers({
   editing: function() {
     return Session.equals('currentDrawing', this._id);
   }
 });
 
-Template.drawings.events({
+Template.drawingContent.events({
   'click .mtr_edit-drawing': function(event, template) {
     Session.set('currentDrawing', this._id);
-    Meteor.call('resetDrawing', this._id);
   },
 
   'click .editing .cell': function(event, template) {
-    console.log('click');
-    // var $this = $(event.target);
-    // var cellIndex = $this.index();
-    // var currentColor = Session.get('currentColor');
+    var cells = template.data.cells;
+    var newCellIndex = $(event.target).index();
+    var newCellColor = Session.get('currentColor');
+    cells.splice(newCellIndex, 1, newCellColor);
 
-    // // Convert index into xy coordinates
-    // var cellPosX = cellIndex % 10 * cellWidth;
-    // var cellPosY = Math.floor((cellIndex / 10) % 10) * cellWidth;
-
-    // if ($this.hasClass('added')) {
-    //   // Meteor.call('updateCell', {
-    //   //   x: cellPosX,
-    //   //   y: cellPosY,
-    //   //   color: currentColor,
-    //   //   drawing: Session.get('currentDrawing')
-    //   // });
-    // } else {
-    //   Meteor.call('createCell', {
-    //     x:       cellPosX,
-    //     y:       cellPosY,
-    //     color:   currentColor,
-    //     drawing: Session.get('currentDrawing')
-    //   });
-    // }
-
-    // $this.addClass('added').addClass(currentColor);
+    Meteor.call('updateDrawing', Session.get('currentDrawing'), cells);
   }
 });
