@@ -1,7 +1,6 @@
 var cellWidth = 10;
-var colors = ['black', 'gray', 'light-gray', 'white', 'aqua', 'blue', 'teal',
-              'green', 'olive', 'lime', 'yellow', 'orange', 'red', 'fuchsia',
-              'purple', 'maroon'];
+var colors = ['black', 'white', 'gray', 'aqua', 'blue',
+              'green', 'yellow', 'orange', 'red', 'fuchsia'];
 
 Session.setDefault('currentDrawing', null);
 Session.setDefault('currentColor', 'black');
@@ -34,13 +33,19 @@ Template.drawingContent.events({
 });
 
 Template.swatches.rendered = function() {
+  var currentColor = Session.get('currentColor');
   _.map(colors, function(color) {
-    $('.swatches').append('<div class="swatch mtr_swatch" data-color="' + color + '"></div>');
+    var isCurrent = (currentColor === color) ? ' cell' : '';
+    $('.swatches').append('<div class="swatch mtr_swatch' + isCurrent + '" data-color="' + color + '"></div>');
   })
 };
 
 Template.swatches.events({
   'click .mtr_swatch': function(event, template) {
-    Session.set('currentColor', $(event.target).data('color'));
+    var $this = $(event.target);
+
+    Session.set('currentColor', $this.data('color'));
+    $('.swatch.cell').removeClass('cell');
+    $this.addClass('cell');
   }
 })

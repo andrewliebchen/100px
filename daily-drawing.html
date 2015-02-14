@@ -4,7 +4,6 @@
 
 <body>
   {{>drawings}}
-  {{>swatches}}
 </body>
 
 <template name="drawings">
@@ -16,12 +15,18 @@
 </template>
 
 <template name="drawingContent">
-  <div class="drawing mtr_drawing{{#if editing}} editing{{/if}}">
-    {{#each cells}}
-      <div class="cell" data-color="{{this}}"></div>
-    {{/each}}
+  <div class="drawing-container">
+    <div class="drawing mtr_drawing{{#if editing}} editing{{/if}}">
+      {{#each cells}}
+        <div class="cell" data-color="{{this}}"></div>
+      {{/each}}
+    </div>
+    {{#if editing}}
+      {{>swatches}}
+    {{else}}
+      <button class="mtr_edit-drawing">edit</button>
+    {{/if}}
   </div>
-  <button class="mtr_edit-drawing">edit</button>
 </template>
 
 <template name="swatches">

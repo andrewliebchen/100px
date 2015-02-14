@@ -7,25 +7,20 @@ $colorGray6: #F7F9FA;
 
 $colors:  (
   black:      $colorGray1,
-  gray:       $colorGray3,
-  light-gray: $colorGray5,
+  gray:       $colorGray4,
   white:      $colorGray6,
   aqua:       #7FDBFF,
   blue:       #0074D9,
-  teal:       #39CCCC,
   green:      #2ECC40,
-  olive:      #3D9970,
-  lime:       #01FF70,
   yellow:     #FFDC00,
   orange:     #FF851B,
   red:        #FF4136,
-  fuchsia:    #F012BE,
-  purple:     #B10DC9,
-  maroon:     #85144B
+  fuchsia:    #F012BE
 );
 
 $cellSize: 10px;
 $drawingSize: $cellSize * 10;
+$radius: 3px;
 
 @mixin clearfix {
   &::after {
@@ -53,20 +48,24 @@ body {
   text-align: center;
 }
 
+.drawing-container {
+  display: inline-block;
+  margin: 10px;
+  position: relative;
+}
+
 .drawing {
   width: $drawingSize;
   height: $drawingSize;
   border: 2px solid $colorGray5;
-  border-radius: 3px;
-  display: inline-block;
-  margin: 10px;
-  position: relative;
+  border-radius: $radius;
 
   &.editing {
     width: $drawingSize * 2;
     height: $drawingSize * 2;
     border-right-width: 1px;
     border-bottom-width: 1px;
+    border-radius: $radius $radius 0 0;
   }
 }
 
@@ -89,12 +88,47 @@ body {
 // Cell colors
 @each $colorName, $colorHex in $colors {
   [data-color="#{$colorName}"] {
-    background-color: $colorHex;
+    color: $colorHex;
+
+    &:hover,
+    &.cell {
+      background-color: $colorHex;
+    }
   }
 }
 
+.swatches {
+  @include clearfix;
+  border-radius: 3px;
+  margin-top: $cellSize;
+  padding: 2px;
+}
+
 .swatch {
-  height: 1em;
-  width: 1em;
+  $size: $cellSize * 2 - 2px;
+  transition: all 0.1s ease-in-out;
+  height: $size;
+  width: $size;
   cursor: pointer;
+  float: left;
+  margin: 1px;
+  box-sizing: border-box;
+  position: relative;
+  border-radius: 1px;
+  border: 1px solid;
+  position: relative;
+
+  &:hover {
+    background-color: auto;
+  }
+
+  &.cell {
+    z-index: 1;
+    transform: scale(1.4);
+    box-shadow: 0 0 3px 3px $colorGray6;
+  }
+
+  &[data-color="white"] {
+    border: 1px solid $colorGray5;
+  }
 }
