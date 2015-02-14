@@ -29,6 +29,10 @@ Template.drawingContent.events({
     cells.splice(newCellIndex, 1, newCellColor);
 
     Meteor.call('updateDrawing', Session.get('currentDrawing'), cells);
+  },
+
+  'click .mtr_done-editing': function() {
+    Session.set('currentDrawing', null);
   }
 });
 
