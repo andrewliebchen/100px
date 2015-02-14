@@ -5,8 +5,8 @@ $colorGray4: #9DA5B1;
 $colorGray5: #D4D9DF;
 $colorGray6: #F7F9FA;
 
-$cellSize: 5px;
-$drawingSize: $cellSize * 20;
+$cellSize: 10px;
+$drawingSize: $cellSize * 10;
 
 @mixin clearfix {
   &::after {
@@ -16,9 +16,9 @@ $drawingSize: $cellSize * 20;
   }
 }
 
-* {
-  box-sizing: border-box;
-}
+// * {
+//   box-sizing: border-box;
+// }
 
 html,
 body {
@@ -42,12 +42,39 @@ body {
   display: inline-block;
   margin: 10px;
   position: relative;
+
+  &.editor {
+    width: $drawingSize * 2;
+    height: $drawingSize * 2;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    display: none;
+  }
+
+  &.is-editing {
+    display: block;
+  }
 }
 
 .cell {
   width: $cellSize;
   height: $cellSize;
-  float: left;
   background-color: $colorGray2;
   position: absolute;
+}
+
+.editor-cell {
+  width: $cellSize * 2;
+  height: $cellSize * 2;
+  float: left;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+  color: $colorGray5;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+// Cell colors
+.black {
+  background-color: $colorGray1;
 }

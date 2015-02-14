@@ -4,6 +4,7 @@
 
 <body>
   {{>drawings}}
+  {{>drawingEditor}}
 </body>
 
 <template name="drawings">
@@ -11,13 +12,14 @@
     {{#each drawing}}
       <div class="drawing mtr_drawing">
         {{#each cell}}
-          <div class="cell" style="top:{{y}}px; left:{{x}}px;"></div>
+          <div class="cell {{color}}" style="top:{{y}}px; left:{{x}}px;"></div>
         {{/each}}
       </div>
+      <button class="mtr_edit-drawing">edit</button>
     {{/each}}
   </div>
 </template>
 
-<template name="cell">
-  <div class="cell"></div>
+<template name="drawingEditor">
+  <div class="drawing editor{{#if editing}} is-editing{{/if}}"></div>
 </template>

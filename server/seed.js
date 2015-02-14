@@ -15,19 +15,22 @@ if (Meteor.isServer) {
       Cells.insert({
         x: 20,
         y: 30,
+        color: "black",
         drawing: parentDrawingId
       });
 
       Cells.insert({
         x: 25,
         y: 30,
+        color:   "black",
         drawing: parentDrawingId
       });
 
       // Orphans
       Cells.insert({
         x: 50,
-        y: 50
+        y: 50,
+        color: "black",
       });
     }
   });
