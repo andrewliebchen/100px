@@ -7,30 +7,21 @@ if (Meteor.isServer) {
 
   Meteor.startup(function () {
     Drawings.remove({});
-    Cells.remove({});
 
     if(Drawings.find().count() === 0) {
-      var parentDrawingId = parentDrawing();
-
-      Cells.insert({
-        x: 20,
-        y: 30,
-        color: "black",
-        drawing: parentDrawingId
-      });
-
-      Cells.insert({
-        x: 25,
-        y: 30,
-        color:   "black",
-        drawing: parentDrawingId
-      });
-
-      // Orphans
-      Cells.insert({
-        x: 50,
-        y: 50,
-        color: "black",
+      Drawings.insert({
+        cells : [
+          "white", "white", "white", "white", "white", "white", "white", "white", "white", "white",
+          "white", "white", "black", "white", "white", "white", "white", "white", "white", "white",
+          "white", "white", "white", "white", "white", "white", "white", "white", "white", "white",
+          "white", "white", "white", "blue", "white", "white", "white", "white", "white", "white",
+          "white", "white", "white", "white", "white", "white", "white", "white", "white", "white",
+          "white", "white", "white", "white", "white", "white", "white", "white", "white", "white",
+          "white", "white", "white", "white", "white", "red", "white", "white", "white", "white",
+          "white", "white", "white", "white", "white", "white", "white", "white", "white", "white",
+          "white", "white", "white", "white", "white", "white", "white", "white", "white", "white",
+          "white", "white", "white", "white", "white", "white", "white", "white", "white", "white"
+        ]
       });
     }
   });

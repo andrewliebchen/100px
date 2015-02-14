@@ -58,35 +58,28 @@ body {
   margin: 10px;
   position: relative;
 
-  &.editor {
+  &.editing {
     width: $drawingSize * 2;
     height: $drawingSize * 2;
     border-right-width: 1px;
     border-bottom-width: 1px;
-    display: none;
-  }
-
-  &.is-editing {
-    display: block;
   }
 }
 
 .cell {
   width: $cellSize;
   height: $cellSize;
-  background-color: $colorGray2;
-  position: absolute;
-}
-
-.editor-cell {
-  width: $cellSize * 2;
-  height: $cellSize * 2;
   float: left;
-  border-right: 1px solid;
-  border-bottom: 1px solid;
-  color: $colorGray5;
-  box-sizing: border-box;
-  cursor: pointer;
+
+  .editing & {
+    width: $cellSize * 2;
+    height: $cellSize * 2;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+    color: $colorGray5;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
 }
 
 // Cell colors
@@ -100,6 +93,10 @@ body {
 
 .light-gray {
   background-color: $colorGray5;
+}
+
+.white {
+  background-color: $colorGray6;
 }
 
 @each $colorName, $colorHex in $colors {

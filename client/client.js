@@ -1,14 +1,15 @@
 var cellWidth = 10;
 
 Session.setDefault('currentDrawing', null);
+Session.setDefault('currentColor', 'black');
 
 Template.drawings.helpers({
   drawing: function() {
     return Drawings.find({});
   },
 
-  cell: function() {
-    return Cells.find({drawing: this._id});
+  editing: function() {
+    return Session.equals('currentDrawing', this._id);
   }
 });
 
@@ -16,41 +17,34 @@ Template.drawings.events({
   'click .mtr_edit-drawing': function(event, template) {
     Session.set('currentDrawing', this._id);
     Meteor.call('resetDrawing', this._id);
-  }
-})
+  },
 
-Template.drawingEditor.rendered = function() {
-  _(100).times(function(){
-    $('.drawing.editor').append('<div class="editor-cell mtr_editor-cell"></div>');
-  });
-}
+  'click .editing .cell': function(event, template) {
+    console.log('click');
+    // var $this = $(event.target);
+    // var cellIndex = $this.index();
+    // var currentColor = Session.get('currentColor');
 
-Template.drawingEditor.helpers({
-  editing: function() {
-    return Session.get('currentDrawing');
-  }
-})
+    // // Convert index into xy coordinates
+    // var cellPosX = cellIndex % 10 * cellWidth;
+    // var cellPosY = Math.floor((cellIndex / 10) % 10) * cellWidth;
 
-Template.drawingEditor.events({
-  'click .mtr_editor-cell': function(event, template) {
-    var $this = $(event.target);
-    var cellIndex = $this.index();
+    // if ($this.hasClass('added')) {
+    //   // Meteor.call('updateCell', {
+    //   //   x: cellPosX,
+    //   //   y: cellPosY,
+    //   //   color: currentColor,
+    //   //   drawing: Session.get('currentDrawing')
+    //   // });
+    // } else {
+    //   Meteor.call('createCell', {
+    //     x:       cellPosX,
+    //     y:       cellPosY,
+    //     color:   currentColor,
+    //     drawing: Session.get('currentDrawing')
+    //   });
+    // }
 
-    // Convert index into xy coordinates
-    var cellPosX = cellIndex % 10 * cellWidth;
-    var cellPosY = Math.floor((cellIndex / 10) % 10) * cellWidth;
-
-    if ($this.hasClass('added')) {
-
-    } else {
-      Meteor.call('createCell', {
-        x:       cellPosX,
-        y:       cellPosY,
-        color:   "black",
-        drawing: Session.get('currentDrawing')
-      });
-    }
-
-    $this.addClass('added').addClass('black');
+    // $this.addClass('added').addClass(currentColor);
   }
 });

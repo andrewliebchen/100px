@@ -10,9 +10,9 @@
 <template name="drawings">
   <div class="drawings">
     {{#each drawing}}
-      <div class="drawing mtr_drawing">
-        {{#each cell}}
-          <div class="cell {{color}}" style="top:{{y}}px; left:{{x}}px;"></div>
+      <div class="drawing mtr_drawing{{#if editing}} editing{{/if}}">
+        {{#each cells}}
+          <div class="cell {{this}}"></div>
         {{/each}}
       </div>
       <button class="mtr_edit-drawing">edit</button>
@@ -21,7 +21,13 @@
 </template>
 
 <template name="drawingEditor">
-  <div class="drawing editor{{#if editing}} is-editing{{/if}}"></div>
+    {{#each drawing}}
+      <div class="drawing editor">
+        {{#each cells}}
+          <div class="cell {{this}}"></div>
+        {{/each}}
+      </div>
+    {{/each}}
   <div class="swatches">
     <div class="swatch black"></div>
     <div class="swatch gray"></div>
