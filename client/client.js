@@ -7,7 +7,7 @@ Session.setDefault('currentColor', 'black');
 
 Template.drawings.helpers({
   drawing: function() {
-    return Drawings.find({});
+    return Drawings.find({}, {sort: {createdAt: -1}});
   }
 });
 
@@ -33,6 +33,15 @@ Template.drawingContent.events({
 
   'click .mtr_done-editing': function() {
     Session.set('currentDrawing', null);
+  }
+});
+
+Template.newDrawing.events({
+  'click .mtr_new-drawing': function() {
+    Drawings.insert({
+      cells : CellTemplate,
+      createdAt: Date.now()
+    });
   }
 });
 

@@ -67,7 +67,7 @@ button {
 .drawings {
   @include clearfix;
   text-align: center;
-  width: 250px;
+  width: $drawingSize + $cellSize * 4 + 6px;
   margin: 0 auto;
 }
 
@@ -109,6 +109,21 @@ button {
   height: $drawingSize;
   border: 2px solid $colorGray5;
   border-radius: $radius;
+
+  &.new {
+    $offset: $cellSize * 2;
+    border-style: dashed;
+    line-height: $drawingSize;
+    display: block;
+    margin: $offset $offset 0;
+    color: $colorGray5;
+    cursor: pointer;
+
+    &:hover {
+      color: $colorGray4;
+      border-color: $colorGray4;
+    }
+  }
 
   .editing & {
     width: $drawingSize * 2;

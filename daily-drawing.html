@@ -8,6 +8,7 @@
 
 <template name="drawings">
   <div class="drawings">
+    {{>newDrawing}}
     {{#each drawing}}
       {{>drawingContent}}
     {{/each}}
@@ -29,6 +30,10 @@
       <button class="mtr_edit-drawing">edit</button>
     {{/if}}
   </div>
+</template>
+
+<template name="newDrawing">
+  <a class="drawing new mtr_new-drawing">+</a>
 </template>
 
 <template name="swatches">
