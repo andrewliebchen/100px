@@ -38,6 +38,21 @@ if (Meteor.isServer) {
           "white", "white", "white", "white", "white", "white", "white", "white", "white", "white"
         ]
       });
+
+      Drawings.insert({
+        cells : [
+          "white", "white", "white", "white", "white", "white", "white", "white", "white", "white",
+          "white", "white", "black", "white", "white", "white", "white", "white", "white", "white",
+          "white", "white", "white", "white", "white", "white", "white", "white", "white", "white",
+          "white", "white", "white", "blue", "white", "white", "white", "white", "white", "white",
+          "white", "white", "white", "white", "white", "white", "white", "white", "white", "white",
+          "white", "white", "white", "white", "white", "white", "white", "white", "white", "white",
+          "white", "white", "white", "white", "white", "red", "white", "white", "white", "white",
+          "white", "white", "white", "white", "white", "white", "white", "white", "white", "white",
+          "white", "white", "white", "white", "white", "white", "white", "white", "white", "white",
+          "white", "white", "white", "white", "white", "white", "white", "white", "white", "white"
+        ]
+      });
     }
   });
 }

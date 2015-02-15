@@ -67,27 +67,40 @@ button {
 .drawings {
   @include clearfix;
   text-align: center;
-  width: 750px; // calculate this
+  width: 250px;
   margin: 0 auto;
 }
 
 .drawing-container {
-  float: left;
-  // display: inline-block;
+  // float: left;
+  display: inline-block;
   margin: 10px;
   position: relative;
   padding: $cellSize;
   border: 1px solid transparent;
   border-radius: 5px;
+  background-color: $colorGray6;
 
   &:hover,
   &.editing {
     border-color: $colorGray5;
-    box-shadow: 0 1px 1px rgba($colorGray5, 0.3);
+    box-shadow: 0 5px 5px $colorGray6;
 
     button {
       opacity: 1;
     }
+  }
+
+  &:hover {
+    z-index: 1;
+  }
+
+  &.editing {
+    z-index: 2;
+  }
+
+  & ~ & {
+    margin-top: -3em;
   }
 }
 

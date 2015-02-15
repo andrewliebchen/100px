@@ -11,19 +11,6 @@
     {{#each drawing}}
       {{>drawingContent}}
     {{/each}}
-    <!--TEMP-->
-    <div class="drawing-container"><div class="drawing"></div></div>
-    <div class="drawing-container"><div class="drawing"></div></div>
-    <div class="drawing-container"><div class="drawing"></div></div>
-    <div class="drawing-container"><div class="drawing"></div></div>
-    <div class="drawing-container"><div class="drawing"></div></div>
-    <div class="drawing-container"><div class="drawing"></div></div>
-    <div class="drawing-container"><div class="drawing"></div></div>
-    <div class="drawing-container"><div class="drawing"></div></div>
-    <div class="drawing-container"><div class="drawing"></div></div>
-    <div class="drawing-container"><div class="drawing"></div></div>
-    <div class="drawing-container"><div class="drawing"></div></div>
-    <div class="drawing-container"><div class="drawing"></div></div>
   </div>
 </template>
 
@@ -35,14 +22,12 @@
         <div class="cell mtr_editable-cell" data-color="{{this}}"></div>
       {{/each}}
     </div>
-    <div class="actions">
-      {{#if editing}}
-        {{>swatches}}
-        <button class="mtr_done-editing">done</button>
-      {{else}}
-        <button class="mtr_edit-drawing">edit</button>
-      {{/if}}
-    </div>
+    {{#if editing}}
+      {{>swatches}}
+      <button class="mtr_done-editing">done</button>
+    {{else}}
+      <button class="mtr_edit-drawing">edit</button>
+    {{/if}}
   </div>
 </template>
 
