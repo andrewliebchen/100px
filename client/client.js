@@ -22,7 +22,7 @@ Template.drawingContent.events({
     Session.set('currentDrawing', this._id);
   },
 
-  'click .editing .cell': function(event, template) {
+  'click .editing .mtr_editable-cell': function(event, template) {
     var cells = template.data.cells;
     var newCellIndex = $(event.target).index();
     var newCellColor = Session.get('currentColor');

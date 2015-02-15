@@ -43,15 +43,52 @@ body {
   line-height: 1.5;
 }
 
+button {
+  background-color: transparent;
+  border: 1px solid $colorGray5;
+  line-height: 1.5;
+  display: block;
+  width: 100%;
+  margin-top: 1em;
+  font-weight: bold;
+  font-size: 0.75em;
+  color: $colorGray4;
+  border-radius: 3px;
+  opacity: 0;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $colorGray4;
+    border-color: $colorGray4;
+    color: $colorGray6;
+  }
+}
+
 .drawings {
   @include clearfix;
   text-align: center;
+  width: 750px; // calculate this
+  margin: 0 auto;
 }
 
 .drawing-container {
-  display: inline-block;
+  float: left;
+  // display: inline-block;
   margin: 10px;
   position: relative;
+  padding: $cellSize;
+  border: 1px solid transparent;
+  border-radius: 5px;
+
+  &:hover,
+  &.editing {
+    border-color: $colorGray5;
+    box-shadow: 0 1px 1px rgba($colorGray5, 0.3);
+
+    button {
+      opacity: 1;
+    }
+  }
 }
 
 .drawing {
@@ -60,7 +97,7 @@ body {
   border: 2px solid $colorGray5;
   border-radius: $radius;
 
-  &.editing {
+  .editing & {
     width: $drawingSize * 2;
     height: $drawingSize * 2;
     border-right-width: 1px;
@@ -81,8 +118,12 @@ body {
     border-bottom: 1px solid;
     color: $colorGray5;
     box-sizing: border-box;
-    cursor: pointer;
+    cursor: crosshair;
   }
+}
+
+.actions {
+  position: absolute;
 }
 
 // Cell colors
@@ -93,6 +134,10 @@ body {
     &:hover,
     &.cell {
       background-color: $colorHex;
+    }
+
+    &.swatch.cell {
+      color: $colorHex;
     }
   }
 }
@@ -106,7 +151,7 @@ body {
 
 .swatch {
   $size: $cellSize * 2 - 2px;
-  transition: all 0.1s ease-in-out;
+  // transition: all 0.1s ease-in-out;
   height: $size;
   width: $size;
   cursor: pointer;

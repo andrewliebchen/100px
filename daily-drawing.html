@@ -11,22 +11,38 @@
     {{#each drawing}}
       {{>drawingContent}}
     {{/each}}
+    <!--TEMP-->
+    <div class="drawing-container"><div class="drawing"></div></div>
+    <div class="drawing-container"><div class="drawing"></div></div>
+    <div class="drawing-container"><div class="drawing"></div></div>
+    <div class="drawing-container"><div class="drawing"></div></div>
+    <div class="drawing-container"><div class="drawing"></div></div>
+    <div class="drawing-container"><div class="drawing"></div></div>
+    <div class="drawing-container"><div class="drawing"></div></div>
+    <div class="drawing-container"><div class="drawing"></div></div>
+    <div class="drawing-container"><div class="drawing"></div></div>
+    <div class="drawing-container"><div class="drawing"></div></div>
+    <div class="drawing-container"><div class="drawing"></div></div>
+    <div class="drawing-container"><div class="drawing"></div></div>
   </div>
 </template>
 
 <template name="drawingContent">
-  <div class="drawing-container">
-    <div class="drawing mtr_drawing{{#if editing}} editing{{/if}}">
+  <div class="drawing-container{{#if editing}} editing{{/if}}">
+    <!--<small>&#9996; 3</small>-->
+    <div class="drawing mtr_drawing">
       {{#each cells}}
-        <div class="cell" data-color="{{this}}"></div>
+        <div class="cell mtr_editable-cell" data-color="{{this}}"></div>
       {{/each}}
     </div>
-    {{#if editing}}
-      {{>swatches}}
-      <button class="mtr_done-editing">done</button>
-    {{else}}
-      <button class="mtr_edit-drawing">edit</button>
-    {{/if}}
+    <div class="actions">
+      {{#if editing}}
+        {{>swatches}}
+        <button class="mtr_done-editing">done</button>
+      {{else}}
+        <button class="mtr_edit-drawing">edit</button>
+      {{/if}}
+    </div>
   </div>
 </template>
 
