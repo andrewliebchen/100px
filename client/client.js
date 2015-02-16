@@ -46,11 +46,12 @@ Template.drawingContent.events({
 
 Template.newDrawing.events({
   'click .mtr_new-drawing': function() {
-    // This needs to be a method
-    // Edit the drawing once it's inserted
-    Drawings.insert({
-      cells : CellTemplate,
-      createdAt: Date.now()
+    Meteor.call('newDrawing', function(error, newId) {
+      if(error){
+        console.log(JSON.stringify(error));
+      } else {
+        Session.set('currentDrawing', newId);
+      }
     });
   }
 });
