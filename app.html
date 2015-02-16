@@ -4,6 +4,7 @@
 </head>
 
 <template name="application">
+  {{>header}}
   {{>yield}}
 </template>
 
@@ -17,11 +18,16 @@
 </template>
 
 <template name="drawings">
-  {{>header}}
   <div class="drawings">
     {{#each drawing}}
       {{>drawingContent}}
     {{/each}}
+  </div>
+</template>
+
+<template name="singleDrawing">
+  <div class="single-drawing">
+    {{>drawingContent}}
   </div>
 </template>
 

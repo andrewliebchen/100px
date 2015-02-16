@@ -45,6 +45,7 @@ body {
   font-family: "Open Sans", "helvetica neue", helvetica, arial, sans-serif;
   font-size: 18px;
   line-height: 1.2;
+  min-height: 100%;
 }
 
 p,
@@ -128,6 +129,14 @@ a.bad {
   margin: 0 auto;
 }
 
+.single-drawing {
+  position: fixed;
+  top: 50%;
+  margin-top: -($drawingSize / 2);
+  left: 0;
+  right: 0;
+}
+
 .drawing-container {
   display: flex;
   padding: $cellSize 0;
@@ -193,7 +202,8 @@ a.bad {
   opacity: 0;
   padding: 0 1em;
 
-  .drawing-container:hover & {
+  .drawing-container:hover &,
+  .single-drawing & {
     opacity: 1;
   }
 }
@@ -260,15 +270,12 @@ a.bad {
     background-color: $colorGray6;
 
     &.cell {
-      box-shadow: inset 0 0 0 1px $colorGray4;
+      box-shadow: inset 0 0 0 1px $colorGray4, 0 0 3px 3px $colorGray6;
     }
   }
 }
 
 // Login buttons
-.login-display-name {
-}
-
 .login-button {
   @extend %a;
   @extend %small;
