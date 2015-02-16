@@ -124,7 +124,6 @@ a.bad {
   @include clearfix;
   cursor: pointer;
   margin: 0 auto;
-  text-align: center;
 }
 
 .drawing-container {
@@ -140,24 +139,27 @@ a.bad {
   position: relative;
   width: $drawingSize;
 
-  &.new {
-    $offset: $cellSize * 2;
-    background-color: $colorGray5;
-    box-shadow: none;
-    color: $colorGray6;
-    cursor: pointer;
-    display: block;
-    line-height: $drawingSize;
-    margin: auto;
-
-    &:hover {
-      background-color: $colorGray4;
-    }
-  }
-
   .editing & {
     height: $drawingSize * 2;
     width: $drawingSize * 2;
+  }
+}
+
+.drawing-new {
+  $offset: $cellSize * 2;
+  background-color: $colorGray5;
+  box-shadow: none;
+  color: $colorGray6;
+  display: block;
+  line-height: $drawingSize;
+  text-align: center;
+
+  &:hover {
+    background-color: $colorGray4;
+  }
+
+  .logged-in & {
+    cursor: pointer;
   }
 }
 

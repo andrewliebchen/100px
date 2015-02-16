@@ -17,14 +17,8 @@
 </template>
 
 <template name="drawings">
+  {{>header}}
   <div class="drawings">
-    <header class="drawing-container header">
-      <aside class="column left"> </aside>
-      {{>newDrawing}}
-      <aside class="column right">
-        {{>loginButtons}}
-      </aside>
-    </header>
     {{#each drawing}}
       {{>drawingContent}}
     {{/each}}
@@ -60,8 +54,20 @@
   </div>
 </template>
 
+<template name="header">
+  <header class="drawing-container header{{#if currentUser}} logged-in{{/if}}">
+    <aside class="column left"></aside>
+    {{>newDrawing}}
+    <aside class="column right">
+      {{>loginButtons}}
+    </aside>
+  </header>
+</template>
+
 <template name="newDrawing">
-  <a class="drawing new mtr_new-drawing">+</a>
+  <a class="drawing drawing-new mtr_new-drawing">
+    {{#if currentUser}}+{{/if}}
+  </a>
 </template>
 
 <template name="swatches">

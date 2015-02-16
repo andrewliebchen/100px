@@ -46,13 +46,15 @@ Template.drawingContent.events({
 
 Template.newDrawing.events({
   'click .mtr_new-drawing': function() {
-    Meteor.call('newDrawing', function(error, newId) {
-      if(error){
-        console.log(JSON.stringify(error));
-      } else {
-        Session.set('currentDrawing', newId);
-      }
-    });
+    if(Meteor.user()) {
+      Meteor.call('newDrawing', function(error, newId) {
+        if(error){
+          console.log(JSON.stringify(error));
+        } else {
+          Session.set('currentDrawing', newId);
+        }
+      });
+    }
   }
 });
 
