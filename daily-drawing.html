@@ -32,7 +32,22 @@
         <li>
           <strong>{{ownerName}}</strong>
         </li>
-        <li><small>{{createdAtTime}}</small></li>
+        <li>
+          <small>{{createdAtTime}}</small>
+        </li>
+        <li>
+          {{#if likeCount}}
+            <a class="mtr_like-drawing">
+              <small>{{likeCount}}</small>
+            </a>
+          {{else}}
+            {{#if currentUser}}
+              <a class="mtr_like-drawing">
+                <small>Like it</small>
+              </a>
+            {{/if}}
+          {{/if}}
+        </li>
       </ul>
     </aside>
     <div class="drawing mtr_drawing">

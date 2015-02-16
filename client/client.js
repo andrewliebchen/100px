@@ -14,10 +14,18 @@ Template.drawingContent.helpers({
 
   createdAtTime: function() {
     return moment(this.createdAt).fromNow();
+  },
+
+  likeCount: function() {
+    return this.likedBy ? this.likedBy.length + " likes" : null;
   }
 });
 
 Template.drawingContent.events({
+  'click .mtr_like-drawing': function() {
+    Meteor.user() ? Meteor.call('likeDrawing', this._id, Meteor.userId()) : null;
+  },
+
   'click .mtr_edit-drawing': function(event, template) {
     Session.set('currentDrawing', this._id);
   },

@@ -8,6 +8,10 @@ Meteor.methods({
     });
   },
 
+  'likeDrawing': function(drawingId, currentUserId) {
+    Drawings.update(drawingId, {$push: {likedBy: currentUserId}});
+  },
+
   'updateDrawing': function(drawingId, cells) {
     Drawings.update(drawingId, {
       $set: {cells: cells}
