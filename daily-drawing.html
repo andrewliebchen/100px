@@ -4,9 +4,7 @@
 </head>
 
 <template name="application">
-  <body>
-    {{>yield}}
-  </body>
+  {{>yield}}
 </template>
 
 <template name="loading">
@@ -20,7 +18,13 @@
 
 <template name="drawings">
   <div class="drawings">
-    {{>newDrawing}}
+    <header class="drawing-container header">
+      <aside class="column left"> </aside>
+      {{>newDrawing}}
+      <aside class="column right">
+        {{>loginButtons}}
+      </aside>
+    </header>
     {{#each drawing}}
       {{>drawingContent}}
     {{/each}}
@@ -31,7 +35,9 @@
   <div class="drawing-container{{#if editing}} editing{{/if}}">
     <aside class="column left">
       <ul>
-        <li><strong>Andrew Liebchen</strong></li>
+        <li>
+          <strong>{{ownerName}}</strong>
+        </li>
         <li><small>{{createdAtTime}}</small></li>
       </ul>
     </aside>
@@ -55,9 +61,7 @@
 </template>
 
 <template name="newDrawing">
-  <div class="drawing-container">
-    <a class="drawing new mtr_new-drawing">+</a>
-  </div>
+  <a class="drawing new mtr_new-drawing">+</a>
 </template>
 
 <template name="swatches">

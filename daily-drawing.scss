@@ -129,7 +129,7 @@ a.bad {
 
 .drawing-container {
   display: flex;
-  padding: $cellSize;
+  padding: $cellSize 0;
   position: relative;
 }
 

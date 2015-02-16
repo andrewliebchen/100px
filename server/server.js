@@ -1,8 +1,10 @@
 Meteor.methods({
   'newDrawing': function() {
     return Drawings.insert({
-      cells : CellTemplate,
-      createdAt: Date.now()
+      cells :    CellTemplate,
+      createdAt: Date.now(),
+      ownerId:   Meteor.userId(),
+      ownerName: Meteor.user().profile.name
     });
   },
 
