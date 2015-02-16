@@ -10,5 +10,5 @@ fourseven:scss
 jquery
 momentjs:moment
 iron:router
-accounts-ui
 accounts-twitter
+accounts-ui-unstyled
