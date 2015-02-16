@@ -17,23 +17,26 @@
 
 <template name="drawingContent">
   <div class="drawing-container{{#if editing}} editing{{/if}}">
-    <!--<small>&#9996; 3</small>-->
     <div class="drawing mtr_drawing">
       {{#each cells}}
         <div class="cell mtr_editable-cell" data-color="{{this}}"></div>
       {{/each}}
     </div>
     {{#if editing}}
-      {{>swatches}}
-      <button class="mtr_done-editing">done</button>
+      <div class="actions">
+        {{>swatches}}
+        <button class="mtr_done-editing">D</button>
+      </div>
     {{else}}
-      <button class="mtr_edit-drawing">edit</button>
+      <button class="drawing-edit mtr_edit-drawing">E</button>
     {{/if}}
   </div>
 </template>
 
 <template name="newDrawing">
-  <a class="drawing new mtr_new-drawing">+</a>
+  <div class="drawing-container">
+    <a class="drawing new mtr_new-drawing">+</a>
+  </div>
 </template>
 
 <template name="swatches">

@@ -1,14 +1,14 @@
 CellTemplate = [
-  "white", "white", "white", "white", "white", "white", "white", "white", "white", "white",
-  "white", "white", "white", "white", "white", "white", "white", "white", "white", "white",
-  "white", "white", "white", "white", "white", "white", "white", "white", "white", "white",
-  "white", "white", "white", "white", "white", "white", "white", "white", "white", "white",
-  "white", "white", "white", "white", "white", "white", "white", "white", "white", "white",
-  "white", "white", "white", "white", "white", "white", "white", "white", "white", "white",
-  "white", "white", "white", "white", "white", "white", "white", "white", "white", "white",
-  "white", "white", "white", "white", "white", "white", "white", "white", "white", "white",
-  "white", "white", "white", "white", "white", "white", "white", "white", "white", "white",
-  "white", "white", "white", "white", "white", "white", "white", "white", "white", "white"
+  "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent",
+  "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent",
+  "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent",
+  "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent",
+  "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent",
+  "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent",
+  "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent",
+  "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent",
+  "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent",
+  "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"
 ];
 
 if (Meteor.isServer) {

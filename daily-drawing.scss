@@ -8,7 +8,7 @@ $colorGray6: #F7F9FA;
 $colors:  (
   black:      $colorGray1,
   gray:       $colorGray4,
-  white:      $colorGray6,
+  white:      transparent,
   aqua:       #7FDBFF,
   blue:       #0074D9,
   green:      #2ECC40,
@@ -18,7 +18,7 @@ $colors:  (
   fuchsia:    #F012BE
 );
 
-$cellSize: 10px;
+$cellSize: 0.5em;
 $drawingSize: $cellSize * 10;
 $radius: 3px;
 
@@ -30,9 +30,13 @@ $radius: 3px;
   }
 }
 
-// * {
-//   box-sizing: border-box;
-// }
+@mixin cell-color($color) {
+  box-shadow: inset 0 0 0 1px $colorGray6, inset 0 0 0 3px $color;
+}
+
+* {
+  box-sizing: border-box;
+}
 
 html,
 body {
@@ -44,22 +48,21 @@ body {
 }
 
 button {
-  background-color: transparent;
-  border: 1px solid $colorGray5;
-  line-height: 1.5;
-  display: block;
-  width: 100%;
-  margin-top: 1em;
-  font-weight: bold;
-  font-size: 0.75em;
+  $size: 3em;
+  background-color: $colorGray6;
+  box-shadow: inset 0 0 0 2px $colorGray4;
+  border-radius: $radius;
+  border: 0;
   color: $colorGray4;
-  border-radius: 3px;
-  opacity: 0;
   cursor: pointer;
+  display: block;
+  font-size: 0.75em;
+  font-weight: bold;
+  width: $size;
+  height: $size;
 
   &:hover {
     background-color: $colorGray4;
-    border-color: $colorGray4;
     color: $colorGray6;
   }
 }
@@ -67,91 +70,101 @@ button {
 .drawings {
   @include clearfix;
   text-align: center;
-  width: $drawingSize + $cellSize * 4 + 6px;
   margin: 0 auto;
+  width: $drawingSize + 2 * $cellSize;
+  cursor: pointer;
 }
 
 .drawing-container {
-  // float: left;
   display: inline-block;
-  margin: 10px;
-  position: relative;
   padding: $cellSize;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  background-color: $colorGray6;
-
-  &:hover,
-  &.editing {
-    border-color: $colorGray5;
-    box-shadow: 0 5px 5px $colorGray6;
-
-    button {
-      opacity: 1;
-    }
-  }
-
-  &:hover {
-    z-index: 1;
-  }
-
-  &.editing {
-    z-index: 2;
-  }
-
-  & ~ & {
-    margin-top: -3em;
-  }
+  position: relative;
 }
 
 .drawing {
-  width: $drawingSize;
+  box-shadow: 0 0 0 2px $colorGray5;
   height: $drawingSize;
-  border: 2px solid $colorGray5;
-  border-radius: $radius;
+  overflow: hidden;
+  width: $drawingSize;
+  float: left;
+  position: relative;
 
   &.new {
     $offset: $cellSize * 2;
-    border-style: dashed;
-    line-height: $drawingSize;
-    display: block;
-    margin: $offset $offset 0;
-    color: $colorGray5;
+    color: $colorGray6;
     cursor: pointer;
+    display: block;
+    line-height: $drawingSize;
+    background-color: $colorGray5;
+    box-shadow: none;
 
     &:hover {
-      color: $colorGray4;
-      border-color: $colorGray4;
+      background-color: $colorGray4;
     }
   }
 
   .editing & {
-    width: $drawingSize * 2;
-    height: $drawingSize * 2;
-    border-right-width: 1px;
+    border-radius: 0;
     border-bottom-width: 1px;
-    border-radius: $radius $radius 0 0;
+    border-right-width: 1px;
+    height: $drawingSize * 2;
+    width: $drawingSize * 2;
   }
 }
 
 .cell {
-  width: $cellSize;
-  height: $cellSize;
   float: left;
+  height: $cellSize;
+  width: $cellSize;
 
   .editing & {
-    width: $cellSize * 2;
-    height: $cellSize * 2;
-    border-right: 1px solid;
     border-bottom: 1px solid;
+    border-right: 1px solid;
     color: $colorGray5;
-    box-sizing: border-box;
     cursor: crosshair;
+    height: $cellSize * 2;
+    width: $cellSize * 2;
+  }
+
+  &:nth-child(10n+10) {
+    border-right: 0;
+  }
+
+  &:nth-child(n+91) {
+    border-bottom: 0;
   }
 }
 
 .actions {
   position: absolute;
+  left: 100%;
+  top: $cellSize;
+  bottom: $cellSize;
+  opacity: 0;
+  width: 70px;
+
+  .drawing-container:hover &,
+  .editing & {
+    opacity: 1;
+  }
+
+  button {
+    position: absolute;
+    bottom: 0;
+    right: -1em;
+  }
+}
+
+.drawing-edit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -1.5em 0 0 -1.5em;
+  display: none;
+
+  .drawing-container:hover & {
+    display: block;
+  }
 }
 
 // Cell colors
@@ -164,44 +177,43 @@ button {
       background-color: $colorHex;
     }
 
-    &.swatch.cell {
-      color: $colorHex;
+    &.swatch {
+      @include cell-color($colorHex);
     }
   }
 }
 
 .swatches {
-  @include clearfix;
-  border-radius: 3px;
-  margin-top: $cellSize;
-  padding: 2px;
+  margin: 0 $cellSize;
+  float: left;
 }
 
 .swatch {
-  $size: $cellSize * 2 - 2px;
-  // transition: all 0.1s ease-in-out;
-  height: $size;
-  width: $size;
+  $size: $cellSize * 2;
+  border-radius: 3px;
   cursor: pointer;
-  float: left;
-  margin: 1px;
-  box-sizing: border-box;
+  height: $size;
   position: relative;
-  border-radius: 1px;
-  border: 1px solid;
-  position: relative;
+  width: $size;
+  float: none;
 
   &:hover {
     background-color: auto;
   }
 
   &.cell {
-    z-index: 1;
-    transform: scale(1.4);
     box-shadow: 0 0 3px 3px $colorGray6;
+    transform: scale(1.3);
+    z-index: 1;
+    border: 0;
   }
 
   &[data-color="white"] {
-    border: 1px solid $colorGray5;
+    @include cell-color($colorGray5);
+    background-color: $colorGray6;
+
+    &.cell {
+      box-shadow: inset 0 0 0 1px $colorGray4;
+    }
   }
 }
