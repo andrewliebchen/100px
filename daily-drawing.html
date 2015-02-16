@@ -1,5 +1,6 @@
 <head>
   <title>daily-drawing</title>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700" rel="stylesheet" type="text/css">
 </head>
 
 <template name="application">
@@ -42,10 +43,10 @@
     <aside class="column right">
       {{#if editing}}
         {{>swatches}}
-        <a class="mtr_done-editing">Done</a>
+        <a class="mtr_done-editing"><strong>Done</strong></a>
       {{else}}
         <ul>
-          <li><a class="drawing-edit mtr_edit-drawing">Edit</a></li>
+          <li><a class="drawing-edit mtr_edit-drawing"><strong>Edit</strong></a></li>
           <li><a class="bad mtr_delete-drawing"><small>Delete</small></a></li>
         </ul>
       {{/if}}
