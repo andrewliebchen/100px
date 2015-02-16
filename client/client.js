@@ -1,5 +1,3 @@
-var cellWidth = 10;
-
 Session.setDefault('currentDrawing', null);
 Session.setDefault('currentColor', 'black');
 
@@ -25,6 +23,8 @@ Template.drawingContent.events({
   },
 
   'click .editing .mtr_editable-cell': function(event, template) {
+    // To change the color of a cell, we get the cell array for the drawing,
+    // update the array, and then shove it back into the Drawings collection
     var cells = template.data.cells;
     var newCellIndex = $(event.target).index();
     var newCellColor = Session.get('currentColor');
@@ -57,6 +57,7 @@ Template.newDrawing.events({
 });
 
 Template.swatches.rendered = function() {
+  // Build the swatch palette
   var currentColor = Session.get('currentColor');
   _.map(Colors, function(color) {
     var isCurrent = (currentColor === color) ? ' cell' : '';

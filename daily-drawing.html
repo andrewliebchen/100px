@@ -2,9 +2,15 @@
   <title>daily-drawing</title>
 </head>
 
-<body>
-  {{>drawings}}
-</body>
+<template name="application">
+  <body>
+    {{>yield}}
+  </body>
+</template>
+
+<template name="loading">
+  Loading
+</template>
 
 <template name="drawings">
   <div class="drawings">
