@@ -56,11 +56,11 @@
         </li>
       </ul>
     </aside>
-    <div class="drawing mtr_drawing">
+    <a href="{{pathFor route='singleDrawing'}}" class="drawing mtr_drawing">
       {{#each cells}}
         <div class="cell mtr_editable-cell" data-color="{{this}}"></div>
       {{/each}}
-    </div>
+    </a>
     <aside class="column right">
       {{#if editing}}
         {{>swatches}}

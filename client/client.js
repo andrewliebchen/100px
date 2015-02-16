@@ -22,10 +22,6 @@ Template.drawingContent.helpers({
 });
 
 Template.drawingContent.events({
-  'click .mtr_drawing': function() {
-    Router.go('singleDrawing', {_id: this._id});
-  },
-
   'click .mtr_like-drawing': function() {
     Meteor.user() ? Meteor.call('likeDrawing', this._id, Meteor.userId()) : null;
   },

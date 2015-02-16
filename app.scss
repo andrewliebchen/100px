@@ -145,6 +145,7 @@ a.bad {
 
 .drawing {
   box-shadow: 0 0 0 2px $colorGray5;
+  display: block;
   height: $drawingSize;
   overflow: hidden;
   position: relative;
