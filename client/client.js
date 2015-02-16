@@ -12,6 +12,10 @@ Template.drawings.helpers({
 Template.drawingContent.helpers({
   editing: function() {
     return Session.equals('currentDrawing', this._id);
+  },
+
+  createdAtTime: function() {
+    return moment(this.createdAt).fromNow();
   }
 });
 
