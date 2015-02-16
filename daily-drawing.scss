@@ -125,22 +125,16 @@ a.bad {
   cursor: pointer;
   margin: 0 auto;
   text-align: center;
-  width: $drawingSize + 2 * $cellSize;
 }
 
 .drawing-container {
-  display: inline-block;
+  display: flex;
   padding: $cellSize;
   position: relative;
-
-  &.editing {
-    margin-left: -($drawingSize / 2);
-  }
 }
 
 .drawing {
   box-shadow: 0 0 0 2px $colorGray5;
-  float: left;
   height: $drawingSize;
   overflow: hidden;
   position: relative;
@@ -154,6 +148,7 @@ a.bad {
     cursor: pointer;
     display: block;
     line-height: $drawingSize;
+    margin: auto;
 
     &:hover {
       background-color: $colorGray4;
@@ -190,33 +185,28 @@ a.bad {
 }
 
 .column {
-  bottom: 0;
-  display: none;
-  padding: $cellSize;
-  position: absolute;
-  top: 0;
-  width: $drawingSize * 2;
+  flex: 1;
+  opacity: 0;
+  padding: 0 1em;
 
   .drawing-container:hover & {
-    display: block;
+    opacity: 1;
   }
 }
 
 .left {
-  right: 100%;
   text-align: right;
 
   .editing:hover & {
-    display: none;
+    opacity: 0;
   }
 }
 
 .right {
-  left: 100%;
   text-align: left;
 
   .editing & {
-    display: block;
+    opacity: 1;
   }
 }
 

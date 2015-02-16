@@ -29,17 +29,17 @@
 
 <template name="drawingContent">
   <div class="drawing-container{{#if editing}} editing{{/if}}">
-    <div class="drawing mtr_drawing">
-      {{#each cells}}
-        <div class="cell mtr_editable-cell" data-color="{{this}}"></div>
-      {{/each}}
-    </div>
     <aside class="column left">
       <ul>
         <li><strong>Andrew Liebchen</strong></li>
         <li><small>{{createdAtTime}}</small></li>
       </ul>
     </aside>
+    <div class="drawing mtr_drawing">
+      {{#each cells}}
+        <div class="cell mtr_editable-cell" data-color="{{this}}"></div>
+      {{/each}}
+    </div>
     <aside class="column right">
       {{#if editing}}
         {{>swatches}}
