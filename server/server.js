@@ -3,5 +3,9 @@ Meteor.methods({
     Drawings.update(drawingId, {
       $set: {cells: cells}
     });
+  },
+
+  'deleteDrawing': function(drawingId) {
+    Drawings.remove(drawingId);
   }
 });

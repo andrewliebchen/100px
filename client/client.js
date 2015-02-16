@@ -1,6 +1,4 @@
 var cellWidth = 10;
-var colors = ['black', 'white', 'gray', 'aqua', 'blue',
-              'green', 'yellow', 'orange', 'red', 'fuchsia'];
 
 Session.setDefault('currentDrawing', null);
 Session.setDefault('currentColor', 'black');
@@ -31,13 +29,21 @@ Template.drawingContent.events({
     Meteor.call('updateDrawing', Session.get('currentDrawing'), cells);
   },
 
-  'click .mtr_done-editing': function() {
+  'click .mtr_delete-drawing': function() {
+    if(window.confirm('Are you sure you want to delete this drawing?')) {
+      Meteor.call('deleteDrawing', this._id);
+    };
+  },
+
+  'click .mtr_done-editing': function(event, template) {
     Session.set('currentDrawing', null);
   }
 });
 
 Template.newDrawing.events({
   'click .mtr_new-drawing': function() {
+    // This needs to be a method
+    // Edit the drawing once it's inserted
     Drawings.insert({
       cells : CellTemplate,
       createdAt: Date.now()
@@ -47,7 +53,7 @@ Template.newDrawing.events({
 
 Template.swatches.rendered = function() {
   var currentColor = Session.get('currentColor');
-  _.map(colors, function(color) {
+  _.map(Colors, function(color) {
     var isCurrent = (currentColor === color) ? ' cell' : '';
     $('.swatches').append('<div class="swatch mtr_swatch' + isCurrent + '" data-color="' + color + '"></div>');
   })

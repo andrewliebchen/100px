@@ -22,14 +22,23 @@
         <div class="cell mtr_editable-cell" data-color="{{this}}"></div>
       {{/each}}
     </div>
-    {{#if editing}}
-      <div class="actions">
+    <aside class="column left">
+      <ul>
+        <li><strong>Andrew Liebchen</strong></li>
+        <li><small>Just now</small></li>
+      </ul>
+    </aside>
+    <aside class="column right">
+      {{#if editing}}
         {{>swatches}}
-        <button class="mtr_done-editing">D</button>
-      </div>
-    {{else}}
-      <button class="drawing-edit mtr_edit-drawing">E</button>
-    {{/if}}
+        <a class="mtr_done-editing">Done</a>
+      {{else}}
+        <ul>
+          <li><a class="drawing-edit mtr_edit-drawing">Edit</a></li>
+          <li><a class="bad mtr_delete-drawing"><small>Delete</small></a></li>
+        </ul>
+      {{/if}}
+    </aside>
   </div>
 </template>
 
