@@ -17,13 +17,18 @@ Template.drawingContent.helpers({
   },
 
   likeCount: function() {
-    return this.likedBy ? this.likedBy.length + " likes" : null;
+    var likeCount = this.likedBy.length;
+    return likeCount > 0 ? likeCount + " likes" : null;
   }
 });
 
 Template.drawingContent.events({
   'click .mtr_like-drawing': function() {
-    Meteor.user() ? Meteor.call('likeDrawing', this._id, Meteor.userId()) : null;
+    if(_.contains(this.likedBy, Meteor.userId())) {
+      Meteor.call('unlikeDrawing', this._id, Meteor.userId());
+    } else {
+      Meteor.call('likeDrawing', this._id, Meteor.userId());
+    }
   },
 
   'click .mtr_edit-drawing': function(event, template) {
@@ -83,4 +88,4 @@ Template.swatches.events({
     $('.swatch.cell').removeClass('cell');
     $this.addClass('cell');
   }
-})
+});

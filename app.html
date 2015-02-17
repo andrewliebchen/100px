@@ -43,9 +43,13 @@
         </li>
         <li>
           {{#if likeCount}}
-            <a class="mtr_like-drawing">
+            {{#if currentUser}}
+              <a class="mtr_like-drawing">
+                <small>{{likeCount}}</small>
+              </a>
+            {{else}}
               <small>{{likeCount}}</small>
-            </a>
+            {{/if}}
           {{else}}
             {{#if currentUser}}
               <a class="mtr_like-drawing">

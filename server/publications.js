@@ -3,5 +3,5 @@ Meteor.publish('drawings', function() {
 });
 
 Meteor.publish('singleDrawing', function(id) {
-    return Drawings.find(id);
-  });
+  return Drawings.find(id);
+});

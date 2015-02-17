@@ -17,7 +17,9 @@ Colors = [
 ];
 
 if (Meteor.isServer) {
-  // Meteor.startup(function () {
+  Meteor.startup(function () {
+    // Meteor.users.remove({});
+
   //   Drawings.remove({});
 
   //   if(Drawings.find().count() === 0) {
@@ -36,5 +38,5 @@ if (Meteor.isServer) {
   //       createdAt: Date.now()
   //     });
   //   }
-  // });
+  });
 }
