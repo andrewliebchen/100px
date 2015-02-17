@@ -23,6 +23,12 @@ Template.drawingContent.helpers({
 });
 
 Template.drawingContent.events({
+  'click .mtr_drawing': function() {
+    if(!Session.get('currentDrawing')) {
+      Router.go('singleDrawing', {_id: this._id});
+    }
+  },
+
   'click .mtr_like-drawing': function() {
     if(_.contains(this.likedBy, Meteor.userId())) {
       Meteor.call('unlikeDrawing', this._id, Meteor.userId());
