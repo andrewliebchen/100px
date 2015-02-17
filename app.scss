@@ -91,6 +91,15 @@ a.bad {
   }
 }
 
+.icon {
+  $size: 1em;
+  width: $size;
+  height: $size;
+  fill: $colorGray4;
+  position: relative;
+  top: 2px;
+}
+
 .loading {
    left: 50%;
    margin: -1em 0 0 -1em;
@@ -283,7 +292,8 @@ a.bad {
 }
 
 // Login buttons
-.login-button {
+.login-button,
+.login-close-text {
   @extend %a;
   @extend %small;
 }

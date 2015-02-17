@@ -12,3 +12,4 @@ momentjs:moment
 iron:router
 accounts-twitter
 accounts-ui-unstyled
+accounts-facebook

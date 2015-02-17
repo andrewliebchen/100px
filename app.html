@@ -39,21 +39,21 @@
           <strong>{{ownerName}}</strong>
         </li>
         <li>
-          <small>{{createdAtTime}}</small>
+          <small>{{createdAtTime}} {{>iconClock}}</small>
         </li>
         <li>
           {{#if likeCount}}
             {{#if currentUser}}
               <a class="mtr_like-drawing">
-                <small>{{likeCount}}</small>
+                <small>{{likeCount}} {{>iconSmile}}</small>
               </a>
             {{else}}
-              <small>{{likeCount}}</small>
+              <small>{{likeCount}} {{>iconSmile}}</small>
             {{/if}}
           {{else}}
             {{#if currentUser}}
               <a class="mtr_like-drawing">
-                <small>Like it</small>
+                <small>Like it {{>iconSmile}}</small>
               </a>
             {{/if}}
           {{/if}}
