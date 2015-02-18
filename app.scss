@@ -78,6 +78,10 @@ a,
 .bad,
 a.bad {
   color: map-get($colors, red);
+
+  .icon {
+    fill: lighten(map-get($colors, red), 20%);
+  }
 }
 
 @keyframes pulse {

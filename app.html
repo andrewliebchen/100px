@@ -36,7 +36,7 @@
     <aside class="column left">
       <ul>
         <li>
-          <strong>{{ownerName}}</strong>
+          <strong>{{ownerName}} {{>iconUser}}</strong>
         </li>
         <li>
           <small>{{createdAtTime}} {{>iconClock}}</small>
@@ -45,15 +45,15 @@
           {{#if likeCount}}
             {{#if currentUser}}
               <a class="mtr_like-drawing">
-                <small>{{likeCount}} {{>iconSmile}}</small>
+                <small>{{likeCount}} {{>iconHeart}}</small>
               </a>
             {{else}}
-              <small>{{likeCount}} {{>iconSmile}}</small>
+              <small>{{likeCount}} {{>iconHeart}}</small>
             {{/if}}
           {{else}}
             {{#if currentUser}}
               <a class="mtr_like-drawing">
-                <small>Like it {{>iconSmile}}</small>
+                <small>Like it {{>iconHeart}}</small>
               </a>
             {{/if}}
           {{/if}}
@@ -68,11 +68,11 @@
     <aside class="column right">
       {{#if editing}}
         {{>swatches}}
-        <a class="mtr_done-editing"><strong>Done</strong></a>
+        <a class="mtr_done-editing"><strong>{{>iconFile}} Done</strong></a>
       {{else}}
         <ul>
-          <li><a class="drawing-edit mtr_edit-drawing"><strong>Edit</strong></a></li>
-          <li><a class="bad mtr_delete-drawing"><small>Delete</small></a></li>
+          <li><a class="drawing-edit mtr_edit-drawing"><strong>{{>iconEdit}} Edit</strong></a></li>
+          <li><a class="bad mtr_delete-drawing"><small>{{>iconTrash}} Delete</small></a></li>
         </ul>
       {{/if}}
     </aside>

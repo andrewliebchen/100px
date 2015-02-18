@@ -18,7 +18,7 @@ Template.drawingContent.helpers({
 
   likeCount: function() {
     var likeCount = this.likedBy.length;
-    return likeCount > 0 ? likeCount + " likes" : null;
+    return likeCount > 0 ? likeCount : null;
   }
 });
 
