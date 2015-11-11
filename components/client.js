@@ -82,7 +82,7 @@ Template.swatches.rendered = function() {
   var currentColor = Session.get('currentColor');
   _.map(Colors, function(color) {
     var isCurrent = (currentColor === color) ? ' cell' : '';
-    $('.swatches').append('<div class="swatch mtr_swatch' + isCurrent + '" data-color="' + color + '"></div>');
+    $('.swatches').append('<div className="swatch mtr_swatch' + isCurrent + '" data-color="' + color + '"></div>');
   })
 };
 
