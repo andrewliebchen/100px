@@ -4,12 +4,26 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-meteor-platform
 insecure
 fourseven:scss
 jquery
 momentjs:moment
-iron:router
 accounts-twitter
 accounts-ui-unstyled
 accounts-facebook
+standard-minifiers
+meteor-base
+mobile-experience
+mongo
+blaze-html-templates
+session
+tracker
+logging
+reload
+ejson
+spacebars
+check
+react
+stevezhu:lodash
+kadira:flow-router
+kadira:react-layout

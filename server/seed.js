@@ -16,27 +16,25 @@ Colors = [
   'green', 'yellow', 'orange', 'red', 'fuchsia'
 ];
 
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // Meteor.users.remove({});
+Meteor.startup(function () {
+  // Meteor.users.remove({});
 
-  //   Drawings.remove({});
+//   Drawings.remove({});
 
-  //   if(Drawings.find().count() === 0) {
-  //     Drawings.insert({
-  //       cells : CellTemplate,
-  //       createdAt: Date.now()
-  //     });
+//   if(Drawings.find().count() === 0) {
+//     Drawings.insert({
+//       cells : CellTemplate,
+//       createdAt: Date.now()
+//     });
 
-  //     Drawings.insert({
-  //       cells : CellTemplate,
-  //       createdAt: Date.now()
-  //     });
+//     Drawings.insert({
+//       cells : CellTemplate,
+//       createdAt: Date.now()
+//     });
 
-  //     Drawings.insert({
-  //       cells : CellTemplate,
-  //       createdAt: Date.now()
-  //     });
-  //   }
-  });
-}
+//     Drawings.insert({
+//       cells : CellTemplate,
+//       createdAt: Date.now()
+//     });
+//   }
+});
