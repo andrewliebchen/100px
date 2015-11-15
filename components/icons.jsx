@@ -1,4 +1,4 @@
-Icons = React.createClass({
+Icon = React.createClass({
   propTypes: {
     name: React.PropTypes.oneOf(['clock', 'heart', 'user', 'trash', 'edit', 'file']).isRequired
   },

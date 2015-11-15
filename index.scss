@@ -246,7 +246,7 @@ a.bad {
 
 // Cell colors
 @each $colorName, $colorHex in $colors {
-  [data-color="#{$colorName}"] {
+  .cell-#{$colorName} {
     color: $colorHex;
 
     &:hover,

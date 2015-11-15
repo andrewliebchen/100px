@@ -11,7 +11,7 @@ Drawings = React.createClass({
     return (
       <div className="drawings">
         {this.data.drawings.map((drawing, i) => {
-          return <DrawingContent drawing={drawing}/>
+          return <DrawingContent drawing={drawing} key={i}/>
         })}
       </div>
     );
