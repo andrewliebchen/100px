@@ -1,4 +1,5 @@
 const cx = React.addons.classSet;
+const _ = lodash;
 
 // Could probably do a better job simplifying the actions
 DrawingContent = React.createClass({
@@ -8,7 +9,18 @@ DrawingContent = React.createClass({
   },
 
   handleLikeDrawing() {
-    console.log('like');
+    console.log('click like');
+    if(_.contains(this.props.likedBy, Meteor.userId())) {
+      Meteor.call('unlikeDrawing', args: {
+        drawingId: this.props.drawing._id,
+        currentUserId: Meteor.userId()
+      });
+    } else {
+      Meteor.call('likeDrawing', args: {
+        drawingId: this.props.drawing._id,
+        currentUserId: Meteor.userId()
+      });
+    }
   },
 
   handleCellClick() {
@@ -29,6 +41,9 @@ DrawingContent = React.createClass({
 
   handleDeleteDrawing() {
     console.log('delete drawing');
+    if(window.confirm('Are you sure you want to delete this drawing?')) {
+      Meteor.call('deleteDrawing', this._id);
+    };
   },
 
   render() {
@@ -126,6 +141,8 @@ if(Meteor.isServer) {
     },
 
     deleteDrawing(drawingId) {
+      check(drawingId, String);
+      
       Drawings.remove(drawingId);
     }
   });

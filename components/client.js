@@ -29,13 +29,13 @@ Template.drawingContent.events({
     }
   },
 
-  'click .mtr_like-drawing': function() {
-    if(_.contains(this.likedBy, Meteor.userId())) {
-      Meteor.call('unlikeDrawing', this._id, Meteor.userId());
-    } else {
-      Meteor.call('likeDrawing', this._id, Meteor.userId());
-    }
-  },
+  // 'click .mtr_like-drawing': function() {
+  //   if(_.contains(this.likedBy, Meteor.userId())) {
+  //     Meteor.call('unlikeDrawing', this._id, Meteor.userId());
+  //   } else {
+  //     Meteor.call('likeDrawing', this._id, Meteor.userId());
+  //   }
+  // },
 
   'click .mtr_edit-drawing': function(event, template) {
     Session.set('currentDrawing', this._id);
@@ -52,11 +52,11 @@ Template.drawingContent.events({
     Meteor.call('updateDrawing', Session.get('currentDrawing'), cells);
   },
 
-  'click .mtr_delete-drawing': function() {
-    if(window.confirm('Are you sure you want to delete this drawing?')) {
-      Meteor.call('deleteDrawing', this._id);
-    };
-  },
+  // 'click .mtr_delete-drawing': function() {
+  //   if(window.confirm('Are you sure you want to delete this drawing?')) {
+  //     Meteor.call('deleteDrawing', this._id);
+  //   };
+  // },
 
   'click .mtr_done-editing': function(event, template) {
     Session.set('currentDrawing', null);
