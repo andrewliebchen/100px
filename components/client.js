@@ -77,21 +77,21 @@ Template.newDrawing.events({
   }
 });
 
-Template.swatches.rendered = function() {
-  // Build the swatch palette
-  var currentColor = Session.get('currentColor');
-  _.map(Colors, function(color) {
-    var isCurrent = (currentColor === color) ? ' cell' : '';
-    $('.swatches').append('<div className="swatch mtr_swatch' + isCurrent + '" data-color="' + color + '"></div>');
-  })
-};
-
-Template.swatches.events({
-  'click .mtr_swatch': function(event, template) {
-    var $this = $(event.target);
-
-    Session.set('currentColor', $this.data('color'));
-    $('.swatch.cell').removeClass('cell');
-    $this.addClass('cell');
-  }
-});
+// Template.swatches.rendered = function() {
+//   // Build the swatch palette
+//   var currentColor = Session.get('currentColor');
+//   _.map(Colors, function(color) {
+//     var isCurrent = (currentColor === color) ? ' cell' : '';
+//     $('.swatches').append('<div className="swatch mtr_swatch' + isCurrent + '" data-color="' + color + '"></div>');
+//   })
+// };
+//
+// Template.swatches.events({
+//   'click .mtr_swatch': function(event, template) {
+//     var $this = $(event.target);
+//
+//     Session.set('currentColor', $this.data('color'));
+//     $('.swatch.cell').removeClass('cell');
+//     $this.addClass('cell');
+//   }
+// });

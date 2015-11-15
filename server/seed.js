@@ -11,10 +11,10 @@ CellTemplate = [
   "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"
 ];
 
-Colors = [
-  'black', 'white', 'gray', 'aqua', 'blue',
-  'green', 'yellow', 'orange', 'red', 'fuchsia'
-];
+// Colors = [
+//   'black', 'white', 'gray', 'aqua', 'blue',
+//   'green', 'yellow', 'orange', 'red', 'fuchsia'
+// ];
 
 Meteor.startup(function () {
   // Meteor.users.remove({});

@@ -102,7 +102,7 @@ DrawingContent = React.createClass({
         </div>
         <aside className="column right">
           {this.state.editing ?
-            <Swatches/>
+            <Swatches currentColor={this.state.color} selectColor={this.handleSelectColor}/>
             <a onClick={this.handleToggleEditing}>
               <strong><Icon name="file"/> Done</strong>
             </a>
@@ -158,7 +158,7 @@ if(Meteor.isServer) {
     },
 
     deleteDrawing(drawingId) {
-      check(drawingId, String); 
+      check(drawingId, String);
       Drawings.remove(drawingId);
     }
   });
