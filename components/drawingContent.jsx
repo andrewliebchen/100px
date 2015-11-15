@@ -63,6 +63,11 @@ DrawingContent = React.createClass({
     };
   },
 
+  handleSelectColor(color) {
+    console.log(`selected color ${color}`);
+    this.setState({color: color});
+  },
+
   render() {
     let {drawing} = this.props;
     let currentUser = Meteor.user();
