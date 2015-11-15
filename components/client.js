@@ -1,11 +1,11 @@
 Session.setDefault('currentDrawing', null);
 Session.setDefault('currentColor', 'black');
 
-Template.drawings.helpers({
-  drawing: function() {
-    return Drawings.find({}, {sort: {createdAt: -1}});
-  }
-});
+// Template.drawings.helpers({
+//   drawing: function() {
+//     return Drawings.find({}, {sort: {createdAt: -1}});
+//   }
+// });
 
 Template.drawingContent.helpers({
   editing: function() {
