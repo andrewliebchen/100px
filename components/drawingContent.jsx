@@ -4,21 +4,28 @@ const _ = lodash;
 // Could probably do a better job simplifying the actions
 DrawingContent = React.createClass({
   propTypes: {
-    drawing: React.PropTypes.array.isRequired,
-    editing: React.PropTypes.bool
+    drawing: React.PropTypes.array.isRequired
+  },
+
+  getInitialState() {
+    return {
+      editing: false,
+      color: null
+    };
   },
 
   handleLikeDrawing() {
     console.log('click like');
-    if(_.contains(this.props.likedBy, Meteor.userId())) {
+    const currentUserId = Meteor.userId();
+    if(_.contains(this.props.likedBy, currentUserId)) {
       Meteor.call('unlikeDrawing', args: {
         drawingId: this.props.drawing._id,
-        currentUserId: Meteor.userId()
+        currentUserId: currentUserId
       });
     } else {
       Meteor.call('likeDrawing', args: {
         drawingId: this.props.drawing._id,
-        currentUserId: Meteor.userId()
+        currentUserId: currentUserId
       });
     }
   },
@@ -29,33 +36,24 @@ DrawingContent = React.createClass({
     // To change the color of a cell, we get the cell array for the drawing,
     // update the array, and then shove it back into the Drawings collection
     const newCellIndex = $(event.target).index();
-    const newCellColor = Session.get('currentColor');
-    cells.splice(newCellIndex, 1, newCellColor);
+    cells.splice(newCellIndex, 1, this.state.color);
 
     Meteor.call('updateDrawing', args: {
-      drawingId: Session.get('currentDrawing'),
+      drawingId: this.props.drawing._id,
       cells: this.props.drawing.cells
     });
   },
 
-  handleDoneEditing() {
-    console.log('done editing');
-    // TODO: Session could be this.state
-    Session.set('currentDrawing', null);
-  },
-
-  handleEditDrawing() {
-    console.log('edit');
-    // TODO: Session could be this.state
-    Session.set('currentDrawing', this.props.drawing._id);
+  handleToggleEditing() {
+    console.log('edit toggle');
+    this.setState({editing: !this.state.editing});
   },
 
   handleDrawingClick() {
     console.log('drawing click');
-    if(!Session.get('currentDrawing')) {
-      // TODO: update flow router syntax
-      Router.go('singleDrawing', {_id: this._id});
-    }
+      if(!this.state.editing) {
+        FlowRouter.go(`drawings/${this.props.drawing._id}`);
+      }
   },
 
   handleDeleteDrawing() {
@@ -66,11 +64,11 @@ DrawingContent = React.createClass({
   },
 
   render() {
-    let {drawing, editing} = this.props;
+    let {drawing} = this.props;
     let currentUser = Meteor.user();
     let drawingClassName = cx({
       'drawing-container': true,
-      'editing': editing
+      'editing': this.state.editing
     });
 
     return (
@@ -103,15 +101,15 @@ DrawingContent = React.createClass({
           })}
         </div>
         <aside className="column right">
-          {editing ?
+          {this.state.editing ?
             <Swatches/>
-            <a onClick={this.handleDoneEditing}>
+            <a onClick={this.handleToggleEditing}>
               <strong><Icon name="file"/> Done</strong>
             </a>
           :
             <ul>
               <li>
-                <a className="drawing-edit" onClick={this.handleEditDrawing}><strong><Icon name="edit"/> Edit</strong></a>
+                <a className="drawing-edit" onClick={this.handleToggleEditing}><strong><Icon name="edit"/> Edit</strong></a>
               </li>
               <li>
                 <a className="bad" onClick={this.handleDeleteDrawing}><small><Icon name="trash"/> Delete</small></a>
@@ -160,8 +158,7 @@ if(Meteor.isServer) {
     },
 
     deleteDrawing(drawingId) {
-      check(drawingId, String);
-
+      check(drawingId, String); 
       Drawings.remove(drawingId);
     }
   });
