@@ -23,20 +23,39 @@ DrawingContent = React.createClass({
     }
   },
 
-  handleCellClick() {
+  handleCellClick(event) {
     console.log('cell click');
+
+    // To change the color of a cell, we get the cell array for the drawing,
+    // update the array, and then shove it back into the Drawings collection
+    const newCellIndex = $(event.target).index();
+    const newCellColor = Session.get('currentColor');
+    cells.splice(newCellIndex, 1, newCellColor);
+
+    Meteor.call('updateDrawing', args: {
+      drawingId: Session.get('currentDrawing'),
+      cells: this.props.drawing.cells
+    });
   },
 
   handleDoneEditing() {
     console.log('done editing');
+    // TODO: Session could be this.state
+    Session.set('currentDrawing', null);
   },
 
   handleEditDrawing() {
     console.log('edit');
+    // TODO: Session could be this.state
+    Session.set('currentDrawing', this.props.drawing._id);
   },
 
   handleDrawingClick() {
     console.log('drawing click');
+    if(!Session.get('currentDrawing')) {
+      // TODO: update flow router syntax
+      Router.go('singleDrawing', {_id: this._id});
+    }
   },
 
   handleDeleteDrawing() {
@@ -113,8 +132,8 @@ if(Meteor.isServer) {
         currentUserId: String
       });
 
-      Drawings.update(drawingId, {
-        $push: {likedBy: currentUserId}
+      Drawings.update(args.drawingId, {
+        $push: {likedBy: args.currentUserId}
       });
     },
 
@@ -124,8 +143,8 @@ if(Meteor.isServer) {
         currentUserId: String
       });
 
-      Drawings.update(drawingId, {
-        $pull: {likedBy: currentUserId}
+      Drawings.update(args.drawingId, {
+        $pull: {likedBy: args.currentUserId}
       });
     },
 
@@ -135,14 +154,14 @@ if(Meteor.isServer) {
         cells: Array
       });
 
-      Drawings.update(drawingId, {
-        $set: {cells: cells}
+      Drawings.update(args.drawingId, {
+        $set: {cells: args.cells}
       });
     },
 
     deleteDrawing(drawingId) {
       check(drawingId, String);
-      
+
       Drawings.remove(drawingId);
     }
   });

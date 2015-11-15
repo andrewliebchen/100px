@@ -23,11 +23,11 @@ Template.drawingContent.helpers({
 });
 
 Template.drawingContent.events({
-  'click .mtr_drawing': function() {
-    if(!Session.get('currentDrawing')) {
-      Router.go('singleDrawing', {_id: this._id});
-    }
-  },
+  // 'click .mtr_drawing': function() {
+  //   if(!Session.get('currentDrawing')) {
+  //     Router.go('singleDrawing', {_id: this._id});
+  //   }
+  // },
 
   // 'click .mtr_like-drawing': function() {
   //   if(_.contains(this.likedBy, Meteor.userId())) {
@@ -37,20 +37,20 @@ Template.drawingContent.events({
   //   }
   // },
 
-  'click .mtr_edit-drawing': function(event, template) {
-    Session.set('currentDrawing', this._id);
-  },
+  // 'click .mtr_edit-drawing': function(event, template) {
+  //   Session.set('currentDrawing', this._id);
+  // },
 
-  'click .editing .mtr_editable-cell': function(event, template) {
-    // To change the color of a cell, we get the cell array for the drawing,
-    // update the array, and then shove it back into the Drawings collection
-    var cells = template.data.cells;
-    var newCellIndex = $(event.target).index();
-    var newCellColor = Session.get('currentColor');
-    cells.splice(newCellIndex, 1, newCellColor);
-
-    Meteor.call('updateDrawing', Session.get('currentDrawing'), cells);
-  },
+  // 'click .editing .mtr_editable-cell': function(event, template) {
+  //   // To change the color of a cell, we get the cell array for the drawing,
+  //   // update the array, and then shove it back into the Drawings collection
+  //   var cells = template.data.cells;
+  //   var newCellIndex = $(event.target).index();
+  //   var newCellColor = Session.get('currentColor');
+  //   cells.splice(newCellIndex, 1, newCellColor);
+  //
+  //   Meteor.call('updateDrawing', Session.get('currentDrawing'), cells);
+  // },
 
   // 'click .mtr_delete-drawing': function() {
   //   if(window.confirm('Are you sure you want to delete this drawing?')) {
@@ -58,9 +58,9 @@ Template.drawingContent.events({
   //   };
   // },
 
-  'click .mtr_done-editing': function(event, template) {
-    Session.set('currentDrawing', null);
-  }
+  // 'click .mtr_done-editing': function(event, template) {
+  //   Session.set('currentDrawing', null);
+  // }
 });
 
 Template.newDrawing.events({
