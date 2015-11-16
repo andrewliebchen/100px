@@ -18,12 +18,12 @@ DrawingContent = React.createClass({
     console.log('click like');
     const currentUserId = Meteor.userId();
     if(_.contains(this.props.likedBy, currentUserId)) {
-      Meteor.call('unlikeDrawing', args: {
+      Meteor.call('unlikeDrawing', {
         drawingId: this.props.drawing._id,
         currentUserId: currentUserId
       });
     } else {
-      Meteor.call('likeDrawing', args: {
+      Meteor.call('likeDrawing', {
         drawingId: this.props.drawing._id,
         currentUserId: currentUserId
       });
@@ -38,7 +38,7 @@ DrawingContent = React.createClass({
     const newCellIndex = $(event.target).index();
     cells.splice(newCellIndex, 1, this.state.color);
 
-    Meteor.call('updateDrawing', args: {
+    Meteor.call('updateDrawing', {
       drawingId: this.props.drawing._id,
       cells: this.props.drawing.cells
     });
@@ -81,6 +81,7 @@ DrawingContent = React.createClass({
         <aside className="column left">
           <ul>
             <li>
+              {/* TODO: remove ownerName from drawing collection */}
               <strong>{drawing.ownerName} <Icon name="user"/></strong>
             </li>
             <li>
@@ -102,15 +103,23 @@ DrawingContent = React.createClass({
         </aside>
         <div className="drawing" onClick={this.handleDrawingClick}>
           {drawing.cells.map((color, i) => {
-            return <div className={`cell cell-${color}`} key={i} onClick={this.handleCellClick}>;
+            return (
+              <div
+                key={i}
+                className={`cell cell-${color}`}
+                onClick={this.handleCellClick}/>
+            );
           })}
         </div>
         <aside className="column right">
           {this.state.editing ?
-            <Swatches currentColor={this.state.color} selectColor={this.handleSelectColor}/>
-            <a onClick={this.handleToggleEditing}>
-              <strong><Icon name="file"/> Done</strong>
-            </a>
+            <span>
+              {/* TODO: put all this into one component */}
+              <Swatches currentColor={this.state.color} selectColor={this.handleSelectColor}/>
+              <a onClick={this.handleToggleEditing}>
+                <strong><Icon name="file"/> Done</strong>
+              </a>
+            </span>
           :
             <ul>
               <li>

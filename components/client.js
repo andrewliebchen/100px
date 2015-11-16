@@ -1,5 +1,5 @@
-Session.setDefault('currentDrawing', null);
-Session.setDefault('currentColor', 'black');
+// Session.setDefault('currentDrawing', null);
+// Session.setDefault('currentColor', 'black');
 
 // Template.drawings.helpers({
 //   drawing: function() {
@@ -7,22 +7,22 @@ Session.setDefault('currentColor', 'black');
 //   }
 // });
 
-Template.drawingContent.helpers({
-  editing: function() {
-    return Session.equals('currentDrawing', this._id);
-  },
+// Template.drawingContent.helpers({
+//   editing: function() {
+//     return Session.equals('currentDrawing', this._id);
+//   },
+//
+//   createdAtTime: function() {
+//     return moment(this.createdAt).fromNow();
+//   },
+//
+//   likeCount: function() {
+//     var likeCount = this.likedBy.length;
+//     return likeCount > 0 ? likeCount : null;
+//   }
+// });
 
-  createdAtTime: function() {
-    return moment(this.createdAt).fromNow();
-  },
-
-  likeCount: function() {
-    var likeCount = this.likedBy.length;
-    return likeCount > 0 ? likeCount : null;
-  }
-});
-
-Template.drawingContent.events({
+// Template.drawingContent.events({
   // 'click .mtr_drawing': function() {
   //   if(!Session.get('currentDrawing')) {
   //     Router.go('singleDrawing', {_id: this._id});
@@ -61,21 +61,21 @@ Template.drawingContent.events({
   // 'click .mtr_done-editing': function(event, template) {
   //   Session.set('currentDrawing', null);
   // }
-});
+// });
 
-Template.newDrawing.events({
-  'click .mtr_new-drawing': function() {
-    if(Meteor.user()) {
-      Meteor.call('newDrawing', function(error, newId) {
-        if(error){
-          console.log(JSON.stringify(error));
-        } else {
-          Session.set('currentDrawing', newId);
-        }
-      });
-    }
-  }
-});
+// Template.newDrawing.events({
+//   'click .mtr_new-drawing': function() {
+//     if(Meteor.user()) {
+//       Meteor.call('newDrawing', function(error, newId) {
+//         if(error){
+//           console.log(JSON.stringify(error));
+//         } else {
+//           Session.set('currentDrawing', newId);
+//         }
+//       });
+//     }
+//   }
+// });
 
 // Template.swatches.rendered = function() {
 //   // Build the swatch palette

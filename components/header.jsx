@@ -1,11 +1,18 @@
+const cx = React.addons.classSet;
+
 Header = React.createClass({
   render() {
+    let headerClassName = cx({
+      'drawing-container': true,
+      'header': true,
+      'logged-in': Meteor.user()
+    });
     return (
-      <header className={`drawing-container header ${Meteor.user() ? 'logged-in' : null}`}>
+      <header className={headerClassName}>
         <aside className="column left"/>
         <NewDrawing/>
         <aside className="column right">
-          {{>loginButtons}}
+          {/*}{{>loginButtons}}*/}
         </aside>
       </header>
     );

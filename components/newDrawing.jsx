@@ -1,8 +1,39 @@
+// TODO: Make this dynamic with lodash
+const cellTemplate = [
+  "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent",
+  "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent",
+  "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent",
+  "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent",
+  "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent",
+  "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent",
+  "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent",
+  "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent",
+  "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent",
+  "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"
+];
+
 NewDrawing = React.createClass({
+  handleNewDrawing() {
+    if(Meteor.user()) {
+      Meteor.call('newDrawing', function(error, newId) {
+        if(error) {
+          console.error(error);
+        } else {
+          // How to activate the new drawing?
+          // Session.set('currentDrawing', newId);
+          Meteor.call('newDrawing', {
+            createdAt: Date.now(),
+            ownerId: Meteor.userId()
+          });
+        }
+      });
+    }
+  },
+
   render() {
     return (
-      <a className="drawing drawing-new mtr_new-drawing">
-        {{#if currentUser}}+{{/if}}
+      <a className="drawing drawing-new" onClick={this.handleNewDrawing}>
+        {Meteor.user() ? '+' : null}
       </a>
     );
   }
@@ -10,12 +41,11 @@ NewDrawing = React.createClass({
 
 if(Meteor.isServer) {
   Meteor.methods({
-    newDrawing() {
+    newDrawing(args) {
       return Drawings.insert({
-        cells :    CellTemplate,
-        createdAt: Date.now(),
-        ownerId:   Meteor.userId(),
-        ownerName: Meteor.user().profile.name,
+        cells :    cellTemplate,
+        createdAt: args.createdAt,
+        ownerId:   args.ownerId,
         likedBy: []
       });
     }

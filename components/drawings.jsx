@@ -26,8 +26,10 @@ if(Meteor.isClient) {
 
     action(params) {
       FlowRouter.subsReady('drawings', () => {
-        ReactLayout.render(App, content() {
-          return <Drawings/>;
+        ReactLayout.render(App, {
+          content() {
+            return <Drawings/>;
+          }
         });
       });
     }

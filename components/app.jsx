@@ -1,6 +1,6 @@
 App = React.createClass({
   propTypes: {
-    content: React.PropTypes.func().isRequired
+    content: React.PropTypes.func.isRequired
   },
 
   render() {
