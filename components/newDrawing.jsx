@@ -15,17 +15,9 @@ const cellTemplate = [
 NewDrawing = React.createClass({
   handleNewDrawing() {
     if(Meteor.user()) {
-      Meteor.call('newDrawing', function(error, newId) {
-        if(error) {
-          console.error(error);
-        } else {
-          // How to activate the new drawing?
-          // Session.set('currentDrawing', newId);
-          Meteor.call('newDrawing', {
-            createdAt: Date.now(),
-            ownerId: Meteor.userId()
-          });
-        }
+      Meteor.call('newDrawing', {
+        createdAt: Date.now(),
+        ownerId: Meteor.userId()
       });
     }
   },
@@ -42,7 +34,12 @@ NewDrawing = React.createClass({
 if(Meteor.isServer) {
   Meteor.methods({
     newDrawing(args) {
-      return Drawings.insert({
+      check(args, {
+        createdAt: Number,
+        ownerId: String
+      });
+
+      Drawings.insert({
         cells :    cellTemplate,
         createdAt: args.createdAt,
         ownerId:   args.ownerId,

@@ -3,16 +3,20 @@ Drawings = React.createClass({
 
   getMeteorData() {
     return {
-      drawings: Drawings.find({}, {sort: {createdAt: -1}})
+      drawings: Drawings.find().fetch()
     };
   },
 
   render() {
     return (
-      <div className="drawings">
-        {this.data.drawings.map((drawing, i) => {
-          return <DrawingContent drawing={drawing} key={i}/>
-        })}
+      <div className="wrapper">
+        <Header/>
+        <div className="drawings">
+          {this.data.drawings.map((drawing, i) => {
+            console.log(drawing);
+            return <DrawingContent drawing={drawing} key={i}/>
+          })}
+        </div>
       </div>
     );
   }
@@ -20,17 +24,13 @@ Drawings = React.createClass({
 
 if(Meteor.isClient) {
   FlowRouter.route('/', {
-    subscriptions(params) {
+    subscriptions() {
       this.register('drawings', Meteor.subscribe('drawings'));
     },
 
-    action(params) {
+    action() {
       FlowRouter.subsReady('drawings', () => {
-        ReactLayout.render(App, {
-          content() {
-            return <Drawings/>;
-          }
-        });
+        ReactLayout.render(Drawings);
       });
     }
   });

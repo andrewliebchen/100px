@@ -1,4 +1,4 @@
-Drawings = new Meteor.Collection('drawings');
+Drawings = new Mongo.Collection('drawings');
 
 // {
 //   cells :    [array of cell colors]
