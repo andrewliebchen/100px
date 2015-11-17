@@ -1,18 +1,26 @@
-const cx = React.addons.classSet;
+AccountsUIWrapper = React.createClass({
+  componentDidMount() {
+    this.view = Blaze.render(Blaze.Template.loginButtons,
+      React.findDOMNode(this.refs.container));
+  },
+
+  componentWillUnmount() {
+    Blaze.remove(this.view);
+  },
+
+  render() {
+    return <span className="session-wrapper" ref="container" />;
+  }
+});
 
 Header = React.createClass({
   render() {
-    let headerClassName = cx({
-      'drawing-container': true,
-      'header': true,
-      'logged-in': Meteor.user()
-    });
     return (
-      <header className={headerClassName}>
+      <header className={`drawing-container header${Meteor.user() ? ' logged-in' : null}`}>
         <aside className="column left"/>
         <NewDrawing/>
         <aside className="column right">
-          {/*}{{>loginButtons}}*/}
+          <AccountsUIWrapper/>
         </aside>
       </header>
     );

@@ -7,7 +7,7 @@ App = React.createClass({
     return (
       <div className="wrapper">
         <Header/>
-        {this.props.content()}
+        {this.props.content}
       </div>
     );
   }
