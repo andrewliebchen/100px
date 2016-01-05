@@ -27,3 +27,9 @@ stevezhu:lodash
 kadira:flow-router
 kadira:react-layout
 audit-argument-checks
+meteorhacks:npm
+
+
+npm-container
+cosmos:browserify
+kadira:dochead

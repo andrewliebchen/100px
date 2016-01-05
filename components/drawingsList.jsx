@@ -1,4 +1,4 @@
-Drawings = React.createClass({
+DrawingsList = React.createClass({
   mixins: [ReactMeteorData],
 
   getMeteorData() {
@@ -13,7 +13,6 @@ Drawings = React.createClass({
         <Header/>
         <div className="drawings">
           {this.data.drawings.map((drawing, i) => {
-            console.log(drawing);
             return <DrawingContent drawing={drawing} key={i}/>
           })}
         </div>
@@ -29,8 +28,9 @@ if(Meteor.isClient) {
     },
 
     action() {
+      DocHead.setTitle('100px');
       FlowRouter.subsReady('drawings', () => {
-        ReactLayout.render(Drawings);
+        ReactLayout.render(DrawingsList);
       });
     }
   });

@@ -1,4 +1,3 @@
-const cx = React.addons.classSet;
 const _ = lodash;
 
 // Could probably do a better job simplifying the actions
@@ -71,7 +70,7 @@ DrawingContent = React.createClass({
   render() {
     let {drawing} = this.props;
     let currentUser = Meteor.user();
-    let drawingClassName = cx({
+    let drawingClassName = classnames({
       'drawing-container': true,
       'editing': this.state.editing
     });

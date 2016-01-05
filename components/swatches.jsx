@@ -1,4 +1,3 @@
-const cx = React.addons.classSet;
 const colors = [
   'black',
   'white',
@@ -22,7 +21,7 @@ Swatches = React.createClass({
     return (
       <div className="swatches">
         {colors.map((color, i) => {
-          let className = cx({
+          let className = classnames({
             'swatch': true,
             'cell': this.props.currentColor === color
           });
