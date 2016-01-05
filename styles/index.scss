@@ -246,7 +246,7 @@ a.bad {
 
 // Cell colors
 @each $colorName, $colorHex in $colors {
-  .cell-#{$colorName} {
+  .color-#{$colorName} {
     color: $colorHex;
 
     &:hover,
@@ -285,7 +285,7 @@ a.bad {
     z-index: 1;
   }
 
-  &[data-color="white"] {
+  &.color-white {
     @include cell-color($colorGray5);
     background-color: $colorGray6;
 

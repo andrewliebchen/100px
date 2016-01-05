@@ -3,7 +3,8 @@ DrawingsList = React.createClass({
 
   getMeteorData() {
     return {
-      drawings: Drawings.find().fetch()
+      drawings: Drawings.find().fetch(),
+      currentUser: Meteor.user()
     };
   },
 
@@ -13,7 +14,12 @@ DrawingsList = React.createClass({
         <Header/>
         <div className="drawings">
           {this.data.drawings.map((drawing, i) => {
-            return <DrawingContent drawing={drawing} key={i}/>
+            return (
+              <DrawingContent
+                key={i}
+                drawing={drawing}
+                currentUser={this.data.currentUser}/>
+            );
           })}
         </div>
       </div>

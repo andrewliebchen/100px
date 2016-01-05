@@ -3,19 +3,20 @@ const _ = lodash;
 // Could probably do a better job simplifying the actions
 DrawingContent = React.createClass({
   propTypes: {
-    drawing: React.PropTypes.array.isRequired
+    drawing: React.PropTypes.object.isRequired,
+    currentUser: React.PropTypes.object
   },
 
   getInitialState() {
     return {
       editing: false,
-      color: null
+      color: 'transparent'
     };
   },
 
   handleLikeDrawing() {
     console.log('click like');
-    const currentUserId = Meteor.userId();
+    const currentUserId = this.props.currentUser._id;
     if(_.contains(this.props.likedBy, currentUserId)) {
       Meteor.call('unlikeDrawing', {
         drawingId: this.props.drawing._id,
@@ -35,7 +36,8 @@ DrawingContent = React.createClass({
     // To change the color of a cell, we get the cell array for the drawing,
     // update the array, and then shove it back into the Drawings collection
     const newCellIndex = $(event.target).index();
-    cells.splice(newCellIndex, 1, this.state.color);
+    console.log(newCellIndex);
+    this.props.drawing.cells.splice(newCellIndex, 1, this.state.color);
 
     Meteor.call('updateDrawing', {
       drawingId: this.props.drawing._id,
@@ -68,8 +70,7 @@ DrawingContent = React.createClass({
   },
 
   render() {
-    let {drawing} = this.props;
-    let currentUser = Meteor.user();
+    let {drawing, currentUser} = this.props;
     let drawingClassName = classnames({
       'drawing-container': true,
       'editing': this.state.editing
@@ -90,7 +91,7 @@ DrawingContent = React.createClass({
               {currentUser ?
                 <a onClick={this.handleLikeDrawing}>
                   <small>
-                    {this.drawing.likeCount ? `${drawing.likeCount} ` : 'Like it '}
+                    {drawing.likeCount ? `${drawing.likeCount} ` : 'Like it '}
                     <Icon name="heart"/>
                   </small>
                 </a>
@@ -105,7 +106,7 @@ DrawingContent = React.createClass({
             return (
               <div
                 key={i}
-                className={`cell cell-${color}`}
+                className={`cell color-${color}`}
                 onClick={this.handleCellClick}/>
             );
           })}
